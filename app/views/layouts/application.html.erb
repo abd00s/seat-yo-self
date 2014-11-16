@@ -1,14 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>SeatYoSelf</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+
+	<%= stylesheet_link_tag    "application" %>
+	<%= javascript_include_tag "vendor/modernizr" %>
+	<%= csrf_meta_tags %>
 </head>
+
 <body>
 
-<%= yield %>
 
+	<div class="row">
+		<div class="large-3 columns">
+			<h1><%= link_to( image_tag("http://placehold.it/400x100&text=SEAT YO SELF"), root_path)%></h1>
+		</div>
+		<div class="large-9 columns">
+			<ul class="button-group right">
+				<li><a href="#" class="button">My Profile</a></li>
+				<li><a href="/restaurants" class="button">All Restaurants</a></li>
+				<li><a href="#" class="button">Signed in as/ Sign up</a></li>
+			</ul>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="row">
+		<div class="large-12 columns">
+			<%= yield %>
+		</div>
+	</div>
+	<footer class="row">
+		<div class="large-12 columns">
+			<hr/>
+			<div class="row">
+				<div class="large-6 columns">
+					<p>© Copyright no one at all. Go to town.</p>
+				</div>
+				<div class="large-6 columns">
+					<ul class="inline-list right">
+						<li><a href="#">Log Out/Sign In</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<%= javascript_include_tag "application" %>
 </body>
 </html>
