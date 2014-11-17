@@ -1,2 +1,6 @@
-<h1>Add a Restaurant</h1>
-<%= render 'form' %>
+<% if current_user.type == "Owner" %>
+	<h1>Add a Restaurant</h1>
+	<%= render 'form' %>
+<% else %>
+	<h1>You do not have permission</h1>
+<% end %> 
