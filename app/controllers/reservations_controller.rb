@@ -23,6 +23,7 @@ class ReservationsController < ApplicationController
   def create
     @restaurant = Restaurant.find(params[:restaurant_id])
     @reservation = @restaurant.reservations.new(reservation_params)
+    @reservation.customer_id = current_user.id
     if @reservation.save
       redirect_to restaurant_path(@restaurant), notice: 'Booking Successfull'
     else
