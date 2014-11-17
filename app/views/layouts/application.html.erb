@@ -13,8 +13,13 @@
 
 <body>
 
-
 	<div class="row">
+    <% if flash[:notice] %>
+      <p id="notice"><%= flash[:notice] %></p>
+    <% end %>
+    <% if flash[:alert] %>
+      <p id="alert"><%= flash[:alert] %></p>
+    <% end %>
 		<div class="large-3 columns">
 			<h1><%= link_to( image_tag("http://placehold.it/400x100&text=SEAT YO SELF"), root_path)%></h1>
 		</div>

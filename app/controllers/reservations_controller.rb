@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  before_filter :ensure_logged_in, only: [:create, :update, :destroy]
 
   def index
     @restaurant = Restaurant.all
