@@ -127,3 +127,9 @@
  
           </div>
       
+<% if current_user %>
+<% if current_user.type == 'Owner' %>
+  <%= link_to "Edit Restaurant", edit_restaurant_path(@restaurant)%> |
+  <%= link_to "Remove Restaurant", restaurant_path(@restaurant), method: :delete %>
+<% end %>
+<% end %>
