@@ -2,11 +2,12 @@ class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
 
   def index
+    @restaurant = Restaurant.all
     @reservations = Reservation.all
   end
 
   def show
-    
+    @restaurant = Restaurant.find(params[:restaurant_id])
   end
 
   def new
@@ -15,7 +16,7 @@ class ReservationsController < ApplicationController
   end
 
   def edit
-    
+    @restaurant = Restaurant.find(params[:restaurant_id])    
   end
 
   def create
