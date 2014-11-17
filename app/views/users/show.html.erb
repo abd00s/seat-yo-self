@@ -1,5 +1,17 @@
 <h1>My Profile</h1>
 <h3><%= @user.name %></h3>
 <p><%= @user.email %></p>
+<% if @user.reservations != [] %>
+<h4>My Reservations</h4>
+<% @user.reservations.each do |res| %>
+<p><%= res.restaurant.name %></p>
+<p><%= res.time.strftime("%A, %d %b %Y") %></p>
+<p><%= res.time.strftime("at %H:%M") %></p> 
+<p>for <%= pluralize(res.size, 'person') %></p> 
+<%= link_to 'Edit Reservation', edit_restaurant_reservation_path(res.restaurant.id, res.id), {class: "button"}%>
+<%= link_to 'Delete Reservation', restaurant_reservation_path(res.restaurant, res), {class: "button", method: :delete}%>
+<hr>
+<% end %>
+<% end %>  
 <%=link_to 'Edit Details', edit_user_path(@user) %> |
 <%=link_to 'Delete Subscription', user_path(@user), method: :delete %>

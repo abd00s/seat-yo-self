@@ -40,8 +40,8 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-    @restaurant = Restaurant.find(params[:id])
-    @restaurant.destroy
+    @reservation = Reservation.find(params[:id])
+    @reservation.destroy
     redirect_to root_path    
   end
 
@@ -51,6 +51,6 @@ class ReservationsController < ApplicationController
   end
 
   def reservation_params
-    params.require(:reservation).permit(:restaurant_id, :user_id, :date, :time, :size)
+    params.require(:reservation).permit(:id, :restaurant_id, :user_id, :date, :time, :size)
   end 
 end
