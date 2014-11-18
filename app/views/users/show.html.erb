@@ -1,17 +1,33 @@
 <h1>My Profile</h1>
 <h3><%= @user.name %></h3>
 <p><%= @user.email %></p>
-<% if @user.reservations != [] %>
-<h4>My Reservations</h4>
-<% @user.reservations.each do |res| %>
-<p><%= res.restaurant.name %></p>
-<p><%= res.time.strftime("%A, %d %b %Y") %></p>
-<p><%= res.time.strftime("at %H:%M") %></p> 
-<p>for <%= pluralize(res.size, 'person') %></p> 
-<%= link_to 'Edit Reservation', edit_restaurant_reservation_path(res.restaurant.id, res.id), {class: "button"}%>
-<%= link_to 'Delete Reservation', restaurant_reservation_path(res.restaurant, res), {class: "button", method: :delete}%>
-<hr>
-<% end %>
+
+<% if @user.type == "Customer" %>
+  <% if @user.reservations != [] %>
+    <h4>My Reservations</h4>
+    <% @user.reservations.each do |res| %>
+    <p><%= res.restaurant.name %></p>
+    <p><%= res.time.strftime("%A, %d %b %Y") %></p>
+    <p><%= res.time.strftime("at %H:%M") %></p> 
+    <p>for <%= pluralize(res.size, 'person') %></p> 
+    <%= link_to 'Edit Reservation', edit_restaurant_reservation_path(res.restaurant.id, res.id), {class: "button"}%>
+    <%= link_to 'Delete Reservation', restaurant_reservation_path(res.restaurant, res), {class: "button", method: :delete}%>
+    <hr>
+    <% end %>
+  <% end %>
+
+<% elsif @user.type == "Owner" %>
+  <h4>Upcoming Reservations</h4>
+  <% @user.restaurants.each do |rest| %>
+    <h5><strong>Reservations at <%= rest.name %></strong></h5>  
+    <% rest.reservations.each do |resv| %>
+      <p><%= resv.customer.name %></p>
+      <p><%= resv.time.strftime("%A, %d %b %Y") %></p>
+      <p><%= resv.time.strftime("at %H:%M") %></p>
+      <p>for <%= pluralize(resv.size, 'person') %></p> 
+      <hr>
+    <% end %>  
+  <% end %>   
 <% end %>  
 <%=link_to 'Edit Details', edit_user_path(@user) %> |
 <%=link_to 'Delete Subscription', user_path(@user), method: :delete %>
