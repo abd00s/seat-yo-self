@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116235247) do
+ActiveRecord::Schema.define(version: 20141118010312) do
 
   create_table "reservations", force: true do |t|
     t.integer  "customer_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20141116235247) do
     t.integer  "capacity"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "owner_id"
   end
 
   create_table "users", force: true do |t|
